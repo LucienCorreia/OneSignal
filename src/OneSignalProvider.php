@@ -13,7 +13,7 @@ class OneSignalProvider extends ServiceProvider {
      */
     public function boot() {
         $this->publishes([
-            __DIR__ . '/../config/onesignal.php' => config_path('onesignal.php'),
+            __DIR__ . '/config/onesignal.php' => config_path('onesignal.php'),
         ]);
     }
 
