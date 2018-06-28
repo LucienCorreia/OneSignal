@@ -18,5 +18,12 @@
         "psr-4": {
             "OneSignal\\": "src/"
         }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "OneSignal\\OneSignalProvider"
+            ]
+        }
     }
 }
