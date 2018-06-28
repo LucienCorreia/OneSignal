@@ -23,7 +23,7 @@ class Notifications {
         $this->largeIcon = config('onesignal.large_icon', null);
     }
 
-    public function contents(array $contents): OneSignal {
+    public function contents(array $contents) {
         foreach ($contents as $k => $v) {
             $this->contents[$k] = $v;
         }
@@ -31,7 +31,7 @@ class Notifications {
         return $this;
     }
 
-    public function headings(array $headings): OneSignal {
+    public function headings(array $headings) {
         foreach ($headings as $k => $v) {
             $this->headings[$k] = $v;
         }
@@ -39,37 +39,37 @@ class Notifications {
         return $this;
     }
 
-    public function includePlayerId($includePlayerId): OneSignal {
+    public function includePlayerId($includePlayerId) {
         $this->includePlayerId = $includePlayerId;
 
         return $this;
     }
 
-    public function url(String $url): OneSignal {
+    public function url(String $url) {
         $this->url = $url;
 
         return $this;
     }
 
-    public function largeIcon(String $largeIcon): OneSignal {
+    public function largeIcon(String $largeIcon) {
         $this->largeIcon = $largeIcon;
 
         return $this;
     }
 
-    public function bigPicture(String $bigPicture): OneSignal {
+    public function bigPicture(String $bigPicture) {
         $this->bigPicture = $bigPicture;
 
         return $this;
     }
 
-    public function includedSegment($includedSegment): OneSignal {
+    public function includedSegment($includedSegment) {
         $this->includedSegment = $includedSegment;
 
         return $this;
     }
 
-    public function data(array $data): OneSignal {
+    public function data(array $data) {
         foreach ($data as $k => $v) {
             $this->data[$k] = $v;
         }
