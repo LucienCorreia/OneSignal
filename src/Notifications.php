@@ -20,7 +20,7 @@ class Notifications {
     public function __construct() {
         $this->appId = env('ONESIGNAL_APP_ID');
         $this->apiKey = env('ONESIGNAL_API_KEY');
-        $this->largeIcon = config('onesignal.large_icon', null);
+        $this->largeIcon = config('onesignal.large_icon');
     }
 
     public function contents(array $contents) {
