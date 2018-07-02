@@ -43,7 +43,7 @@ class Notifications {
         $this->includePlayerIds = '[';
 
         foreach ($includePlayerIds as $k => $v) {
-            $this->includePlayerIds .= "$v, ";
+            $this->includePlayerIds .= "'$v', ";
         }
 
         $this->includePlayerIds .= ']';
