@@ -7,7 +7,7 @@ use GuzzleHttp\Client;
 class Notifications {
     private $appId;
     private $apiKey;
-    private $includePlayerId;
+    private $includePlayerIds;
     private $contents = [];
     private $largeIcon;
     private $url;
@@ -39,8 +39,14 @@ class Notifications {
         return $this;
     }
 
-    public function includePlayerId($includePlayerId) {
-        $this->includePlayerId = $includePlayerId;
+    public function includePlayerIds(array $includePlayerIds) {
+        $this->includePlayerIds = '[';
+
+        foreach ($includePlayerIds as $k => $v) {
+            $this->includePlayerIds .= "$v, ";
+        }
+
+        $this->includePlayerIds .= ']';
 
         return $this;
     }
@@ -93,7 +99,7 @@ class Notifications {
                         'large_icon' => $this->largeIcon,
                         'url' => $this->url,
                         'big_picture' => $this->bigPicture,
-                        'include_player_ids[]' => $this->includePlayerId,
+                        'include_player_ids[]' => $this->includePlayerIds,
                         'included_segments[]' => $this->includedSegment,
                         'headings' => $this->headings,
                         'data' => $this->data,
