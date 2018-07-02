@@ -5,14 +5,14 @@ namespace OneSignal;
 use GuzzleHttp\Client;
 
 class Notifications {
+    private $apiUrl = 'https://onesignal.com/api/v1/notifications';
     private $appId;
     private $apiKey;
-    private $includePlayerIds;
+    private $includePlayerIds = [];
     private $contents = [];
     private $largeIcon;
     private $url;
     private $bigPicture;
-    private $apiUrl = 'https://onesignal.com/api/v1/notifications';
     private $headings = [];
     private $includedSegment;
     private $data = [];
@@ -40,13 +40,7 @@ class Notifications {
     }
 
     public function includePlayerIds(array $includePlayerIds) {
-        $this->includePlayerIds = '[';
-
-        foreach ($includePlayerIds as $k => $v) {
-            $this->includePlayerIds .= "'$v', ";
-        }
-
-        $this->includePlayerIds .= ']';
+        $this->includePlayerIds = $includePlayerIds;
 
         return $this;
     }
@@ -84,6 +78,7 @@ class Notifications {
     }
 
     public function send() {
+
         $client = new Client();
 
         try {
@@ -91,22 +86,22 @@ class Notifications {
                 [
                     'headers' => [
                         'Authorization' => 'Basic ' . $this->apiKey,
-                        'Content-Type' => 'application/x-www-form-urlencoded',
+                        'Content-Type' => 'application/json',
                     ],
-                    'form_params' => [
+                    'json' => [
                         'app_id' => $this->appId,
                         'contents' => $this->contents,
                         'large_icon' => $this->largeIcon,
                         'url' => $this->url,
                         'big_picture' => $this->bigPicture,
-                        'include_player_ids[]' => $this->includePlayerIds,
-                        'included_segments[]' => $this->includedSegment,
+                        'include_player_ids' => $this->includePlayerIds,
+                        'included_segments' => $this->includedSegment,
                         'headings' => $this->headings,
                         'data' => $this->data,
                     ],
                 ]);
 
-            return json_decode($response->getBody()->getContents());
+            return json_decode($response->getBody());
         } catch (Exception $e) {
             return $e->getMessage();
         }
