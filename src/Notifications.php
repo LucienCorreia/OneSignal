@@ -8,13 +8,13 @@ class Notifications {
     private $apiUrl = 'https://onesignal.com/api/v1/notifications';
     private $appId;
     private $apiKey;
-    private $includePlayerIds = [];
+    private $includePlayerIds = null;
     private $contents = [];
     private $largeIcon;
     private $url;
     private $bigPicture;
     private $headings = [];
-    private $includedSegments = [];
+    private $includedSegments = null;
     private $data = [];
 
     public function __construct() {
