@@ -14,7 +14,7 @@ class Notifications {
     private $url;
     private $bigPicture;
     private $headings = [];
-    private $includedSegment;
+    private $includedSegments = [];
     private $data = [];
 
     public function __construct() {
@@ -63,8 +63,8 @@ class Notifications {
         return $this;
     }
 
-    public function includedSegment($includedSegment) {
-        $this->includedSegment = $includedSegment;
+    public function includedSegments($includedSegments) {
+        $this->includedSegments = $includedSegments;
 
         return $this;
     }
@@ -95,7 +95,7 @@ class Notifications {
                         'url' => $this->url,
                         'big_picture' => $this->bigPicture,
                         'include_player_ids' => $this->includePlayerIds,
-                        'included_segments' => $this->includedSegment,
+                        'included_segments' => $this->includedSegments,
                         'headings' => $this->headings,
                         'data' => $this->data,
                     ],
