@@ -64,7 +64,7 @@ class Notifications {
     }
 
     public function tag($key, $value) {
-        $this->tag = [
+        $this->tag[] = [
             'field' => 'tag',
             'key' => $key,
             'relation' => '=',
