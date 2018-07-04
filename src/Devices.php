@@ -36,7 +36,7 @@ class Devices {
         $client = new Client();
 
         try {
-            $response = $client->post($this->apiUrl . $this->playerId,
+            $response = $client->put($this->apiUrl . $this->playerId,
                 [
                     'headers' => [
                         'Authorization' => 'Basic ' . $this->apiKey,
