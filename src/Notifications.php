@@ -65,7 +65,7 @@ class Notifications {
     }
 
     public function background(array $background) {
-        $this->background = $background;
+        $this->background[] = $background;
 
         return $this;
     }
