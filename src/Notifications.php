@@ -16,7 +16,7 @@ class Notifications {
     private $headings = [];
     private $tag;
     private $data = [];
-    private $background = [];
+    private $background;
 
     public function __construct() {
         $this->appId = env('ONESIGNAL_APP_ID');
