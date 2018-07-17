@@ -16,7 +16,7 @@ class Devices {
         $this->playerId = $playerId;
         $this->appId = env('ONESIGNAL_APP_ID');
         $this->apiKey = env('ONESIGNAL_API_KEY');
-        $this->largeIcon = config('onesignal.large_icon');
+        $this->icon = config('onesignal.icon');
     }
 
     public function playerId($playerId) {
