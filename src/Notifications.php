@@ -10,7 +10,7 @@ class Notifications {
     private $apiKey;
     private $includePlayerIds = null;
     private $contents = [];
-    private $largeIcon;
+    private $icon;
     private $url;
     private $bigPicture;
     private $headings = [];
@@ -52,8 +52,8 @@ class Notifications {
         return $this;
     }
 
-    public function largeIcon(String $largeIcon) {
-        $this->largeIcon = $largeIcon;
+    public function icon(String $icon) {
+        $this->icon = $icon;
 
         return $this;
     }
@@ -103,7 +103,8 @@ class Notifications {
                     'json' => [
                         'app_id' => $this->appId,
                         'contents' => $this->contents,
-                        'large_icon' => $this->largeIcon,
+                        'small_icon' => $this->icon,
+                        'large_icon' => $this->icon,
                         'url' => $this->url,
                         'big_picture' => $this->bigPicture,
                         'filters' => $this->tag,
