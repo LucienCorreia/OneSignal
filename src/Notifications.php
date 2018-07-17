@@ -16,6 +16,7 @@ class Notifications {
     private $headings = [];
     private $tag;
     private $data = [];
+    private $background = [];
 
     public function __construct() {
         $this->appId = env('ONESIGNAL_APP_ID');
@@ -63,6 +64,12 @@ class Notifications {
         return $this;
     }
 
+    public function background(array $background) {
+        $this->background = $background;
+
+        return $this;
+    }
+
     public function tag($key, $value) {
         $this->tag[] = [
             'field' => 'tag',
@@ -101,6 +108,7 @@ class Notifications {
                         'big_picture' => $this->bigPicture,
                         'filters' => $this->tag,
                         $this->includePlayerIds ? 'include_player_ids' : '' => $this->includePlayerIds,
+                        'android_background_layout' => $this->background,
                         'headings' => $this->headings,
                         'data' => $this->data,
                     ],
