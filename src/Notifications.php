@@ -118,7 +118,7 @@ class Notifications {
                         $this->includePlayerIds ? 'include_player_ids' : '' => $this->includePlayerIds,
                         'android_background_layout' => $this->background,
                         'headings' => $this->headings,
-                        'data' => $this->data,
+                        $this->data ? 'data' : '' => $this->data,
                     ],
                 ]);
 

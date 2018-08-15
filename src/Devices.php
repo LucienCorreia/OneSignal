@@ -14,9 +14,16 @@ class Devices {
 
     public function __construct($playerId = null) {
         $this->playerId = $playerId;
-        $this->appId = env('ONESIGNAL_APP_ID');
-        $this->apiKey = env('ONESIGNAL_API_KEY');
-        $this->icon = config('onesignal.icon');
+		$tenant = config('onesignal.tenant');
+		if($tenant) {
+			$this->appId = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.app_id');
+			$this->apiKey = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.api_key');
+			$this->largeIcon = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.large_icon');
+		} else {
+			$this->appId = env('ONESIGNAL_APP_ID');
+			$this->apiKey = env('ONESIGNAL_API_KEY');
+			$this->largeIcon = config('onesignal.large_icon');	
+		}
     }
 
     public function playerId($playerId) {
