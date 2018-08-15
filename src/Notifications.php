@@ -15,13 +15,20 @@ class Notifications {
     private $bigPicture;
     private $headings = [];
     private $tag;
-    private $data = [];
+    private $data;
     private $background;
 
     public function __construct() {
-        $this->appId = env('ONESIGNAL_APP_ID');
-        $this->apiKey = env('ONESIGNAL_API_KEY');
-        $this->largeIcon = config('onesignal.large_icon');
+		$tenant = config('onesignal.tenant');
+		if($tenant) {
+			$this->appId = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.app_id');
+			$this->apiKey = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.api_key');
+			$this->largeIcon = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.large_icon');
+		} else {
+			$this->appId = env('ONESIGNAL_APP_ID');
+			$this->apiKey = env('ONESIGNAL_API_KEY');
+			$this->largeIcon = config('onesignal.large_icon');	
+		}
     }
 
     public function contents(array $contents) {
@@ -91,7 +98,7 @@ class Notifications {
 
     public function send() {
 
-        $client = new Client();
+		$client = new Client();
 
         try {
             $response = $client->post($this->apiUrl,
