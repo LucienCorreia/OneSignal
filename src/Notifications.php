@@ -15,7 +15,7 @@ class Notifications {
     private $bigPicture;
     private $headings = [];
     private $tag;
-    private $data = [];
+    private $data;
     private $background;
 
     public function __construct() {
@@ -98,7 +98,7 @@ class Notifications {
 
     public function send() {
 
-        $client = new Client();
+		$client = new Client();
 
         try {
             $response = $client->post($this->apiUrl,
