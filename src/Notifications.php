@@ -16,6 +16,7 @@ class Notifications {
     private $headings = [];
     private $icon;
     private $includePlayerIds = null;
+    private $includeSegments = ["Active Users"];
     private $sendAfter;
     private $tag;
     private $url;
@@ -51,6 +52,12 @@ class Notifications {
 
     public function includePlayerIds(array $includePlayerIds) {
         $this->includePlayerIds = $includePlayerIds;
+
+        return $this;
+    }
+
+    public function includedSegments(array $includeSegments) {
+        $this->includeSegments = $includeSegments;
 
         return $this;
     }
@@ -123,6 +130,7 @@ class Notifications {
                         'url' => $this->url,
                         'big_picture' => $this->bigPicture,
                         'filters' => $this->tag,
+                        'included_segments' => $this->includedSegments,
                         $this->includePlayerIds ? 'include_player_ids' : '' => $this->includePlayerIds,
                         'android_background_layout' => $this->background,
                         'headings' => $this->headings,
