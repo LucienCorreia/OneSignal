@@ -98,7 +98,7 @@ class Notifications {
         return $this;
     }
 
-    public sendAfter(String $sendAfter) {
+    public function sendAfter(String $sendAfter) {
         $this->sendAfter = $sendAfter;
 
         return $this;
