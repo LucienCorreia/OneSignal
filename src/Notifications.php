@@ -16,7 +16,7 @@ class Notifications {
     private $headings = [];
     private $icon;
     private $includePlayerIds = null;
-    private $includeSegments = ["Active Users"];
+    private $includedSegments = ["Active Users"];
     private $sendAfter;
     private $tag;
     private $url;
@@ -56,8 +56,8 @@ class Notifications {
         return $this;
     }
 
-    public function includedSegments(array $includeSegments) {
-        $this->includeSegments = $includeSegments;
+    public function includedSegments(array $includedSegments) {
+        $this->includedSegments = $includedSegments;
 
         return $this;
     }
