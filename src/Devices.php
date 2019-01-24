@@ -18,11 +18,11 @@ class Devices {
 		if($tenant) {
 			$this->appId = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.app_id');
 			$this->apiKey = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.api_key');
-			$this->largeIcon = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.large_icon');
+			$this->largeIcon = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.icon');
 		} else {
 			$this->appId = env('ONESIGNAL_APP_ID');
 			$this->apiKey = env('ONESIGNAL_API_KEY');
-			$this->largeIcon = config('onesignal.large_icon');	
+			$this->largeIcon = config('onesignal.icon');	
 		}
     }
 

@@ -5,18 +5,20 @@ namespace OneSignal;
 use GuzzleHttp\Client;
 
 class Notifications {
+
     private $apiUrl = 'https://onesignal.com/api/v1/notifications';
     private $appId;
     private $apiKey;
-    private $includePlayerIds = null;
-    private $contents = [];
-    private $icon;
-    private $url;
-    private $bigPicture;
-    private $headings = [];
-    private $tag;
-    private $data;
     private $background;
+    private $bigPicture;
+    private $contents = [];
+    private $data;
+    private $headings = [];
+    private $icon;
+    private $includePlayerIds = null;
+    private $sendAfter;
+    private $tag;
+    private $url;
 
     public function __construct() {
 		$tenant = config('onesignal.tenant');
@@ -96,6 +98,12 @@ class Notifications {
         return $this;
     }
 
+    public sendAfter(String $sendAfter) {
+        $this->sendAfter = $sendAfter;
+
+        return $this;
+    }
+
     public function send() {
 
 		$client = new Client();
@@ -119,6 +127,7 @@ class Notifications {
                         'android_background_layout' => $this->background,
                         'headings' => $this->headings,
                         $this->data ? 'data' : '' => $this->data,
+                        'send_after' => $this->sendAfter
                     ],
                 ]);
 
