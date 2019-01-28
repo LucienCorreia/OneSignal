@@ -161,13 +161,7 @@ class Notifications {
                     'http_errors' => false
                 ]);
 
-            if($response->getStatusCode() == 200)
                 return json_decode($response->getBody());
-            else
-                return json_encode([
-                    'success' => false,
-                    $response->getBody()
-                ]);
         } catch (Exception $e) {
             return $e->getMessage();
         }
