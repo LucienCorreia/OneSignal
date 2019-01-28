@@ -14,15 +14,17 @@ class Notifications {
     private $contents = [];
     private $data;
     private $headings = [];
-    private $icon;
     private $includePlayerIds = null;
     private $includedSegments = ["Active Users"];
+    private $largeIcon;
+    private $smallIcon;
     private $sendAfter;
     private $tag;
     private $url;
 
     public function __construct() {
-		$tenant = config('onesignal.tenant');
+        $tenant = config('onesignal.tenant');
+        
 		if($tenant) {
 			$this->appId = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.app_id');
 			$this->apiKey = config($tenant.'.'.\Tenant::getCurrentTenant().'.onesignal.api_key');
@@ -68,8 +70,8 @@ class Notifications {
         return $this;
     }
 
-    public function icon(String $icon) {
-        $this->icon = $icon;
+    public function smallIcon(String $smallIcon) {
+        $this->smallIcon = $smallIcon;
 
         return $this;
     }
@@ -125,8 +127,8 @@ class Notifications {
                     'json' => [
                         'app_id' => $this->appId,
                         'contents' => $this->contents,
-                        'small_icon' => $this->icon,
-                        'large_icon' => $this->icon,
+                        'small_icon' => $this->smallIcon,
+                        'large_icon' => $this->largeIcon,
                         'url' => $this->url,
                         'big_picture' => $this->bigPicture,
                         'filters' => $this->tag,
@@ -136,6 +138,29 @@ class Notifications {
                         'headings' => $this->headings,
                         $this->data ? 'data' : '' => $this->data,
                         'send_after' => $this->sendAfter
+                    ],
+                ]);
+
+            return json_decode($response->getBody());
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function cancel(string $idNotification) {
+
+        $client = new Client();
+
+        try {
+            $response = $client->delete($this->apiUrl,
+                [
+                    'headers' => [
+                        'Authorization' => 'Basic ' . $this->apiKey,
+                        'Content-Type' => 'application/json',
+                    ],
+                    'json' => [
+                        'id' => $idNotification,
+                        'app_id' => $this->appId,
                     ],
                 ]);
 

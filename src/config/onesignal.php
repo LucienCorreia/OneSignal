@@ -1,4 +1,4 @@
 <?php
 return [
-    'icon' => ''
+    'large_icon' => ''
 ];
