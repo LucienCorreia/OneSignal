@@ -6,7 +6,9 @@ use GuzzleHttp\Client;
 
 class Notifications {
 
-    private $androidGroupMessage = 'Você tem $[notif_count] novas notificações!';
+    private $androidGroupMessage = [
+        'en' => 'Você tem $[notif_count] novas notificações!'
+    ];
     private $apiUrl = 'https://onesignal.com/api/v1/notifications';
     private $appId;
     private $apiKey;
