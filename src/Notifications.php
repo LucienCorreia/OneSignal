@@ -166,4 +166,23 @@ class Notifications {
             return $e->getMessage();
         }
     }
+
+    public function viewNotification(string $idNotification) {
+
+        $client = new Client();
+
+        try {
+            $response = $client->get($this->apiUrl . '/' . $idNotification . '?app_id=' . $this->appId,
+                [
+                    'headers' => [
+                        'Authorization' => 'Basic ' . $this->apiKey,
+                        'Content-Type' => 'application/json',
+                    ]
+                ]);
+
+                return json_decode($response->getBody());
+        } catch(Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
