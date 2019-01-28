@@ -158,6 +158,7 @@ class Notifications {
                         'Authorization' => 'Basic ' . $this->apiKey,
                         'Content-Type' => 'application/json',
                     ],
+                    'http_errors' => false
                 ]);
 
             return json_decode($response->getBody());
