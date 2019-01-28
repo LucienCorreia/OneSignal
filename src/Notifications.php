@@ -13,6 +13,7 @@ class Notifications {
     private $apiUrl = 'https://onesignal.com/api/v1/notifications';
     private $appId;
     private $apiKey;
+    private $buttons = [];
     private $background;
     private $bigPicture;
     private $contents = [];
@@ -39,6 +40,12 @@ class Notifications {
 			$this->apiKey = env('ONESIGNAL_API_KEY');
 			$this->largeIcon = config('onesignal.large_icon');	
 		}
+    }
+
+    public function button(array $button) {
+        $this->buttons[] = $button;
+
+        return $this;
     }
 
     public function contents(array $contents) {
@@ -139,6 +146,7 @@ class Notifications {
                         'app_id' => $this->appId,
                         'android_group' => $this->androidGroup,
                         'android_group_message' => $this->androidGroupMessage,
+                        'buttons' => $this->buttons,
                         'contents' => $this->contents,
                         'small_icon' => $this->smallIcon,
                         'large_icon' => $this->largeIcon,
