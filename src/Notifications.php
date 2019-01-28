@@ -152,15 +152,11 @@ class Notifications {
         $client = new Client();
 
         try {
-            $response = $client->delete($this->apiUrl,
+            $response = $client->delete($this->apiUrl . '/' . $idNotification . '?app_id=' . $this->appId,
                 [
                     'headers' => [
                         'Authorization' => 'Basic ' . $this->apiKey,
                         'Content-Type' => 'application/json',
-                    ],
-                    'json' => [
-                        'id' => $idNotification,
-                        'app_id' => $this->appId,
                     ],
                 ]);
 
