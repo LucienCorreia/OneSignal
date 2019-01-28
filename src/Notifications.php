@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 
 class Notifications {
 
+    private $androidGroup = 'Novas notificações!';
     private $androidGroupMessage = [
         'en' => 'Você tem $[notif_count] novas notificações!'
     ];
@@ -18,7 +19,7 @@ class Notifications {
     private $data;
     private $headings = [];
     private $includePlayerIds = null;
-    private $includedSegments = ["Active Users"];
+    private $includedSegments = ['Subscribed Users'];
     private $largeIcon;
     private $smallIcon;
     private $sendAfter;
@@ -136,6 +137,7 @@ class Notifications {
                     ],
                     'json' => [
                         'app_id' => $this->appId,
+                        'android_group' => $this->androidGroup,
                         'android_group_message' => $this->androidGroupMessage,
                         'contents' => $this->contents,
                         'small_icon' => $this->smallIcon,
