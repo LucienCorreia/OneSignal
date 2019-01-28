@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 
 class Notifications {
 
+    private $androidGroupMessage = 'Você tem $[notif_count] novas notificações!';
     private $apiUrl = 'https://onesignal.com/api/v1/notifications';
     private $appId;
     private $apiKey;
@@ -21,6 +22,7 @@ class Notifications {
     private $sendAfter;
     private $tag;
     private $url;
+    private $webUrl;
 
     public function __construct() {
         $tenant = config('onesignal.tenant');
@@ -66,6 +68,12 @@ class Notifications {
 
     public function url(String $url) {
         $this->url = $url;
+
+        return $this;
+    }
+
+    public function webUrl(string $webUrl) {
+        $this->webUrl = $webUrl;
 
         return $this;
     }
@@ -126,6 +134,7 @@ class Notifications {
                     ],
                     'json' => [
                         'app_id' => $this->appId,
+                        'android_group_message' => $this->androidGroupMessage,
                         'contents' => $this->contents,
                         'small_icon' => $this->smallIcon,
                         'large_icon' => $this->largeIcon,
