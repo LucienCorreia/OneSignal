@@ -20,7 +20,7 @@ class Notifications {
     private $data;
     private $headings = [];
     private $includePlayerIds = null;
-    private $includedSegments = ['Subscribed Users'];
+    private $includedSegments = null;
     private $largeIcon;
     private $smallIcon;
     private $sendAfter;
@@ -133,7 +133,11 @@ class Notifications {
 
     public function send() {
 
-		$client = new Client();
+        $client = new Client();
+        
+        if($this->includePlayerIds == null) {
+            $this->includedSegments = ['Subscribed Users'];
+        }
 
         try {
             $response = $client->post($this->apiUrl,
