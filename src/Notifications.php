@@ -76,7 +76,7 @@ class Notifications {
         return $this;
     }
 
-    public function url(String $url) {
+    public function url(string $url) {
         $this->url = $url;
 
         return $this;
@@ -88,13 +88,13 @@ class Notifications {
         return $this;
     }
 
-    public function smallIcon(String $smallIcon) {
+    public function smallIcon(string $smallIcon) {
         $this->smallIcon = $smallIcon;
 
         return $this;
     }
 
-    public function bigPicture(String $bigPicture) {
+    public function bigPicture(string $bigPicture) {
         $this->bigPicture = $bigPicture;
 
         return $this;
@@ -125,7 +125,7 @@ class Notifications {
         return $this;
     }
 
-    public function sendAfter(String $sendAfter) {
+    public function sendAfter(string $sendAfter) {
         $this->sendAfter = $sendAfter;
 
         return $this;
